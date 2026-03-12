@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parking History - Parking Expense Tracker</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icon.png">
+  <meta name="theme-color" content="#1976d2">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Parking History</h1>
+    <button id="addManualEntryBtn" class="add-manual">Add Manual Entry</button>
+    <button id="clearAllBtn" class="clear-all">Clear All Data</button>
+    <a href="index.html" class="history-link">Back to Dashboard</a>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Park Time</th>
+          <th>Exit Time</th>
+          <th>Duration</th>
+          <th>Fee</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="historyBody">
+      </tbody>
+    </table>
+    <div class="manual-entry-modal" id="manualEntryModal">
+      <div class="modal-content">
+        <h2>Add Manual Entry</h2>
+        <form id="manualEntryForm">
+          <label>Park DateTime
+            <input type="datetime-local" id="manualParkTime" required>
+          </label>
+          <label>Exit DateTime
+            <input type="datetime-local" id="manualExitTime" required>
+          </label>
+          <div class="modal-actions">
+            <button type="submit" class="save">Save</button>
+            <button type="button" id="cancelManualEntry" class="cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-overlay" id="modalOverlay"></div>
+  </div>
+  <script src="history.js"></script>
+</body>
+</html>
