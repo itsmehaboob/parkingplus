@@ -1,7 +1,7 @@
 {
   "name": "Parking Expense Tracker",
   "short_name": "ParkingTracker",
-  "start_url": "index.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f5f5",
   "theme_color": "#1976d2",
@@ -19,3 +19,4 @@
     }
   ]
 }
+
