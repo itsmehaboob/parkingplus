@@ -125,47 +125,9 @@ mainActionBtn.addEventListener('click', function() {
 clearAllBtn.addEventListener('click', clearAllData);
 
 // --- PWA Service Worker Registration ---
-const updateBanner = document.getElementById('updateBanner');
-const refreshAppBtn = document.getElementById('refreshAppBtn');
-
-function showUpdateBanner(registration) {
-  if (!updateBanner) return;
-  updateBanner.hidden = false;
-  updateBanner.classList.add('show');
-  refreshAppBtn.onclick = () => {
-    if (registration && registration.waiting) {
-      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-    }
-  };
-}
-
-function trackInstalling(worker, registration) {
-  worker.addEventListener('statechange', () => {
-    if (worker.state === 'installed' && navigator.serviceWorker.controller) {
-      showUpdateBanner(registration);
-    }
-  });
-}
-
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('service-worker.js').then(registration => {
-      if (registration.waiting) {
-        showUpdateBanner(registration);
-      }
-      if (registration.installing) {
-        trackInstalling(registration.installing, registration);
-      }
-      registration.addEventListener('updatefound', () => {
-        if (registration.installing) {
-          trackInstalling(registration.installing, registration);
-        }
-      });
-    });
-
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      window.location.reload();
-    });
+    navigator.serviceWorker.register('service-worker.js');
   });
 }
 

@@ -220,43 +220,6 @@ button.cancel:hover {
     max-width: 100vw;
     padding: 1rem 0.2rem 2rem 0.2rem;
   }
-}
-.update-banner {
-  width: 100%;
-  max-width: 420px;
-  background: #155fa0;
-  color: #fff;
-  border-radius: 12px;
-  margin: 0.8rem auto 0.8rem auto;
-  padding: 0.5rem 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-  border: 1px solid #0f4f85;
-}
-.update-banner.show {
-  display: flex;
-}
-.update-banner-text {
-  font-size: 0.94rem;
-  font-weight: 600;
-  color: #fff;
-}
-.update-banner-btn {
-  background: #fff;
-  color: #155fa0;
-  border: none;
-  border-radius: 12px;
-  padding: 0.35rem 0.7rem;
-  font-size: 0.86rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-.update-banner-btn:hover {
-  background: #f4f4f4;
-}
-
   .card {
     max-width: 98vw;
     padding: 1rem 0.5rem;
