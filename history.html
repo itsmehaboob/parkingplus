@@ -35,9 +35,10 @@
           <label>Park DateTime
             <input type="datetime-local" id="manualParkTime" required>
           </label>
-          <label>Exit DateTime
-            <input type="datetime-local" id="manualExitTime" required>
+          <label>Exit DateTime (optional)
+            <input type="datetime-local" id="manualExitTime">
           </label>
+          <p style="font-size:0.85rem; color:#444; margin-top:0.2rem;">Leave exit empty to keep this as current active parking.</p>
           <div class="modal-actions">
             <button type="submit" class="save">Save</button>
             <button type="button" id="cancelManualEntry" class="cancel">Cancel</button>
