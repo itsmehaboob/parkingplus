@@ -10,6 +10,10 @@
   <meta name="theme-color" content="#1976d2">
 </head>
 <body>
+  <div id="updateBanner" class="update-banner" role="status" aria-live="polite" hidden>
+    <div class="update-banner-text">New version available — Refresh</div>
+    <button id="refreshAppBtn" class="update-banner-btn">Refresh</button>
+  </div>
   <div class="container">
     <h1 class="title">Parking Expense Tracker</h1>
     <div class="card total-expense">
@@ -25,7 +29,6 @@
       <div class="card-value" id="currentCost">₹0</div>
     </div>
     <button id="mainActionBtn" class="main-action park">PARK VEHICLE</button>
-    <button id="clearAllBtn" class="clear-all">Clear All Data</button>
     <a href="history.html" class="history-link">View History</a>
   </div>
   <script src="app.js"></script>
