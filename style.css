@@ -91,6 +91,26 @@ body {
 .history-link:hover {
   text-decoration: underline;
 }
+.hard-reload-btn {
+  position: fixed;
+  top: 0.7rem;
+  right: 0.7rem;
+  z-index: 9999;
+  border: none;
+  background: #1976d2;
+  color: #fff;
+  border-radius: 999px;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.hard-reload-btn:hover {
+  transform: scale(1.05);
+  background: #0f5ab7;
+}
 .history-table {
   width: 100%;
   border-collapse: collapse;

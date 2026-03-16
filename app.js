@@ -124,6 +124,24 @@ mainActionBtn.addEventListener('click', function() {
 });
 clearAllBtn.addEventListener('click', clearAllData);
 
+// --- Hard reload button ---
+const hardReloadBtn = document.getElementById('hardReloadBtn');
+function hardReloadApp() {
+  // Unregister service worker and clear caches so next load fetches latest files
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((regs) => {
+      regs.forEach((reg) => reg.unregister());
+    }).catch(() => {});
+  }
+  if ('caches' in window) {
+    caches.keys().then((keys) => Promise.all(keys.map((k) => caches.delete(k)))).catch(() => {});
+  }
+  window.location.reload();
+}
+if (hardReloadBtn) {
+  hardReloadBtn.addEventListener('click', hardReloadApp);
+}
+
 // --- PWA Service Worker Registration ---
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
