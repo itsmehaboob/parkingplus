@@ -72,6 +72,20 @@ const clearAllBtn = document.getElementById('clearAllBtn');
 function renderHistory() {
   const history = getHistory();
   historyBody.innerHTML = '';
+
+  const activeStart = getActiveParkingStart();
+  if (activeStart) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${formatDateTime(parseInt(activeStart))}</td>
+      <td>In progress</td>
+      <td>--</td>
+      <td>--</td>
+      <td>Current</td>
+    `;
+    historyBody.appendChild(tr);
+  }
+
   for (let i = 0; i < history.length; i++) {
     const entry = history[i];
     const tr = document.createElement('tr');
@@ -111,17 +125,35 @@ function showManualEntryModal(show) {
 manualEntryForm.onsubmit = function(e) {
   e.preventDefault();
   const park = new Date(manualParkTime.value).getTime();
-  const exit = new Date(manualExitTime.value).getTime();
-  if (!park || !exit || exit <= park) {
-    alert('Exit time must be after park time.');
+  if (!manualParkTime.value || isNaN(park)) {
+    alert('Park time is required.');
     return;
   }
-  const durationMinutes = Math.ceil((exit - park) / 60000);
-  const fee = calcFee(durationMinutes);
-  const history = getHistory();
-  history.unshift({ start: park, end: exit, durationMinutes, fee });
-  setHistory(history);
+
+  if (manualExitTime.value) {
+    const exit = new Date(manualExitTime.value).getTime();
+    if (isNaN(exit) || exit <= park) {
+      alert('Exit time must be after park time.');
+      return;
+    }
+    const durationMinutes = Math.ceil((exit - park) / 60000);
+    const fee = calcFee(durationMinutes);
+    const history = getHistory();
+    history.unshift({ start: park, end: exit, durationMinutes, fee });
+    setHistory(history);
+    showManualEntryModal(false);
+    renderHistory();
+    return;
+  }
+
+  // No exit time: treat as current parking start
+  if (getActiveParkingStart()) {
+    alert('There is already an active parking session. Please exit it first.');
+    return;
+  }
+  setActiveParkingStart(park.toString());
   showManualEntryModal(false);
+  alert('Manual start time saved as current parking.');
   renderHistory();
 };
 addManualEntryBtn.onclick = function() { showManualEntryModal(true); };
